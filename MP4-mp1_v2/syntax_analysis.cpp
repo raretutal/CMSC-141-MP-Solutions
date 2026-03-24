@@ -1,5 +1,5 @@
 #include "syntax_analyzer.hpp"
-
+#include <set>
 // Maps TokenType to a column index for the transition tables
 int getTokenIndex(TokenType type) {
     switch(type) {
@@ -16,7 +16,6 @@ int getTokenIndex(TokenType type) {
 }
 
 bool checkVariableDeclaration(const std::vector<Token>& tokens) {
-    // Columns: TYPE, ID, =, VAL, COMMA, SEMI, (, )
     int table[7][8] = {
         { 1, -1, -1, -1, -1, -1, -1, -1}, // State 0: Start
         {-1,  2, -1, -1, -1, -1, -1, -1}, // State 1: Seen Type
@@ -28,9 +27,21 @@ bool checkVariableDeclaration(const std::vector<Token>& tokens) {
     };
 
     int state = 0;
+    std::set<std::string> declared_vars; 
+
     for (const auto& token : tokens) {
         int input = getTokenIndex(token.type);
         if (input == -1) return false;
+
+        if (input == 1) { 
+            if (state == 1 || state == 5) {
+                if (declared_vars.count(token.value)) return false; 
+                declared_vars.insert(token.value);
+            } 
+            else if (state == 3) {
+                if (!declared_vars.count(token.value)) return false; 
+            }
+        }
 
         state = table[state][input];
         if (state == -1) return false;
