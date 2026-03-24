@@ -38,3 +38,30 @@ bool checkVariableDeclaration(const std::vector<Token>& tokens) {
     
     return (state == 6);
 }
+
+bool checkFunctionDeclaration(const std::vector<Token>& tokens) {
+    // Columns: TYPE, ID, =, VAL, COMMA, SEMI, (, )
+    int table[10][8] = {
+        { 1, -1, -1, -1, -1, -1, -1, -1}, // State 0: Start
+        {-1,  2, -1, -1, -1, -1, -1, -1}, // State 1: Seen Ret Type
+        {-1, -1, -1, -1, -1, -1,  3, -1}, // State 2: Seen Func Name
+        { 4, -1, -1, -1, -1, -1, -1,  7}, // State 3: Seen (
+        {-1,  5, -1, -1,  6, -1, -1,  7}, // State 4: Seen Param Type
+        {-1, -1, -1, -1,  6, -1, -1,  7}, // State 5: Seen Param ID
+        { 4, -1, -1, -1, -1, -1, -1, -1}, // State 6: Seen Comma in params
+        {-1, -1, -1, -1,  8,  9, -1, -1}, // State 7: Seen )
+        {-1,  2, -1, -1, -1, -1, -1, -1}, // State 8: Seen Comma after func
+        { 1, -1, -1, -1, -1, -1, -1, -1}  // State 9: Accepting (Semi)
+    };
+
+    int state = 0;
+    for (const auto& token : tokens) {
+        int input = getTokenIndex(token.type);
+        if (input == -1) return false;
+
+        state = table[state][input];
+        if (state == -1) return false;
+    }
+    
+    return (state == 9);
+}
