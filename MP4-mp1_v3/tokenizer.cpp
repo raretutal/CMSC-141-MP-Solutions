@@ -5,7 +5,7 @@
 #include <vector>
 #include <algorithm>
 
-    // ~MAIN TOKENIZE FUNCTION~
+// ~MAIN TOKENIZE FUNCTION~
 
 std::vector<Token> tokenize(std::string code){
     std::vector<Token> tokens;
@@ -32,22 +32,24 @@ std::vector<Token> tokenize(std::string code){
         t.value = word;
         t.type = UNKNOWN;
 
-    
-        if (isType(word)) t.type = KEYWORD_TYPE;
-        else if (word == "=") t.type = ASSIGN_OP;
-        else if (word == ",") t.type = COMMA;
-        else if (word == ";") t.type = SEMICOLON;
-        else if (word == "(") t.type = L_PARENTHESIS;
-        else if (word == ")") t.type = R_PARENTHESIS;
-        else if (isNumber(word)) t.type = LITERAL_VAL;
-        else if (word.length() >= 3 && word.front() == '\'' && word.back() == '\''){
-            t.type = LITERAL_VAL;
+        if (word == "+") {
+                    t.type = UNION;
+                } else if (word == "*") {
+                    t.type = STAR;
+                } else if (word == "(") {
+                    t.type = L_PARENTHESIS;
+                } else if (word == ")") {
+                    t.type = R_PARENTHESIS;
+                } else if (word == "a" || word == "b" || word == "e") {
+                    t.type = OPERAND;
+                }
+                tokens.push_back(t);
         }
-        else if (isValidIdentifier(word)) t.type = IDENTIFIER;
 
-        tokens.push_back(t);
-        
+    
+        return tokens;
     }
-    return tokens;
 
-}
+    
+
+    
