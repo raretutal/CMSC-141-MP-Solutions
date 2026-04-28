@@ -3,7 +3,7 @@
 #include "tokenizer.hpp"
 #include <vector>
 
-// get priority yes yes
+// get operator priority yes yes
 int getPrecedence(TokenType type);
 
 // Shunting-yard algorithm (goated alg yeah yeah)
