@@ -1,3 +1,22 @@
+    // ~~ HONOR CODE ~~
+/*
+I declare, upon my honor, that I did this machine problem assignment by myself
+using references from the lecture notes and MPs.
+
+I declare, upon my honor, that I did this machine problem assignment by myself
+using online resources from the following:
+- https://brilliant.org/wiki/shunting-yard-algorithm/
+- https://www.geeksforgeeks.org/cpp/map-associative-containers-the-c-standard-template-library-stl/
+- https://www.geeksforgeeks.org/cpp/stack-in-cpp-stl/
+- https://www.sanfoundry.com/cpp-program-construct-dfa-from-nfa/?__cf_chl_tk=ak6GzrIcV2Xmor0VWcmerLFMdZ50ABcYpMudkJudUSY-1777519682-1.0.1.1-MOmnU4VTYOJyAsUDzyKhJ25V0qTcoU5cV3vIfeW2gHM
+
+
+Further, my solution is not a copy from the aforementioned sources.
+I declare, upon my honor, that I did this machine problem assignment as a
+collaboration with (enumerate your collaborators, maximum of 3 other collaborators).
+Further, my solution is not a copy of any of my collaborators' solutions.
+*/
+
 #include <iostream>
 #include <string>
 #include <vector>
