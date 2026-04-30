@@ -48,7 +48,9 @@ int main() {
 
     while (num_test_cases--) {
         std::string regex;
-        std::cin >> regex;
+
+        std::ws(std::cin);
+        std::getline(std::cin, regex);
 
         // Build the Pipeline
         std::vector<Token> tokens = tokenize(regex);

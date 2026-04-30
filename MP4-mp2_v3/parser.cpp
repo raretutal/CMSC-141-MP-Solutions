@@ -39,13 +39,13 @@ std::vector<Token> infixToPostfix(const std::vector<Token>& infix_token){
             }
             operator_stack.push_back(token);
         }
-        // clean remaining shit in the operator stack onto the operator queue to finish postfix
-        while(!operator_stack.empty()){
-            output_queue.push_back(operator_stack.back());
-            operator_stack.pop_back();
-        }
-        return output_queue;
+
     }
-    
+    // clean remaining shit in the operator stack onto the operator queue to finish postfix
+    while(!operator_stack.empty()){
+        output_queue.push_back(operator_stack.back());
+        operator_stack.pop_back();
+    }
+    return output_queue;
 }
 
