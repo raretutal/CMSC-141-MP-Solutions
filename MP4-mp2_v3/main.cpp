@@ -34,7 +34,7 @@ int main() {
         std::string regex;
         std::cin >> regex;
 
-        // 1. Build the Pipeline
+        // Build the Pipeline
         std::vector<Token> tokens = tokenize(regex);
         std::vector<Token> postfix = infixToPostfix(tokens);
 
@@ -44,7 +44,7 @@ int main() {
         DFABuilder dfa_builder(nfa_builder.getStates(), nfa.accept_state);
         DFATable dfa = dfa_builder.buildDFA(nfa.start_state);
 
-        // 2. Read and test the strings
+        // Read and test the strings
         int num_strings;
         std::cin >> num_strings;
 
@@ -57,7 +57,7 @@ int main() {
                 test_string = ""; 
             }
 
-            // 3. Simulate and Output
+            // Simulate and Output
             if (simulateDFA(dfa, test_string)) {
                 std::cout << "yes\n";
             } else {
